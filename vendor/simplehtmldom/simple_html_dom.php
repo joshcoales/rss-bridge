@@ -91,6 +91,16 @@ function file_get_html(
 	return $dom->load($contents, $lowercase, $stripRN);
 }
 
+/**
+ * @param $str
+ * @param bool $lowercase
+ * @param bool $forceTagsClosed
+ * @param string $target_charset
+ * @param bool $stripRN
+ * @param string $defaultBRText
+ * @param string $defaultSpanText
+ * @return simple_html_dom|false
+ */
 function str_get_html(
 	$str,
 	$lowercase = true,
@@ -1184,6 +1194,7 @@ class simple_html_dom_node
 
 	function addClass($class)
 	{
+		global $debug_object;
 		if (is_string($class)) {
 			$class = explode(' ', $class);
 		}
@@ -1209,6 +1220,7 @@ class simple_html_dom_node
 
 	function hasClass($class)
 	{
+		global $debug_object;
 		if (is_string($class)) {
 			if (isset($this->class)) {
 				return in_array($class, explode(' ', $this->class), true);
